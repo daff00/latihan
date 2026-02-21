@@ -8,6 +8,7 @@ const links = [
   { path: "/counter", label: "Counter" },
   { path: "/tictactoe", label: "TicTacToe" },
   { path: "/calculator", label: "Calculator" },
+  { path: "/todo", label: "Todo" },
 ];
 
 export default function Navbar() {
