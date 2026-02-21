@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import CounterPage from "./pages/CounterPage";
 import TicTacToe from "./pages/TicTacToe";
 import Calculator from "./pages/CalculatorPage";
+import TodoListPage from "./pages/TodoListPage";
 
 function App() {
   const location = useLocation();
@@ -21,6 +22,7 @@ function App() {
           <Route path="/counter" element={<CounterPage />} />
           <Route path="/tictactoe" element={<TicTacToe />} />
           <Route path="/calculator" element={<Calculator />} />
+          <Route path="/todo" element={<ToDoListPage />} />
         </Routes>
       </AnimatePresence>
     </div>
