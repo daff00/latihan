@@ -1,0 +1,115 @@
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
+export default function CounterPage() {
+  const [counter, setCounter] = useState(() => {
+    const saved = localStorage.getItem("counter");
+    return saved ? Number(saved) : 0;
+  });
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem("counter", counter.toString());
+  }, [counter]);
+
+  useEffect(() => {
+    const handleKey = (e) => {
+      if (e.key === "ArrowUp") setCounter((p) => p + 1);
+      if (e.key === "ArrowDown") setCounter((p) => p - 1);
+      if (e.key.toLowerCase() === "r") setCounter(0);
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, []);
+
+  const emoji = counter > 0 ? "🚀" : counter < 0 ? "📉" : "✨";
+
+  return (
+    <motion.div
+      // Standard Page Transition
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ duration: 0.3 }}
+      // Standardized Layout for Header Consistency
+      className="min-h-screen bg-slate-950 flex flex-col items-center pt-32 px-4 relative overflow-hidden text-white"
+    >
+      {/* Background Glow */}
+      <motion.div
+        animate={{
+          backgroundColor:
+            counter > 0 ? "#22d3ee" : counter < 0 ? "#a855f7" : "#64748b",
+        }}
+        className="absolute w-[600px] h-[600px] rounded-full blur-[140px] -top-40 -right-40 opacity-10 transition-colors duration-700 pointer-events-none"
+      />
+
+      {/* Header - Locked Position */}
+      <div className="text-center space-y-2 mb-12 z-10">
+        <h1 className="text-5xl font-bold tracking-tighter bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+          Precision Counter
+        </h1>
+        <p className="text-slate-500 text-sm font-medium uppercase tracking-widest">
+          Interactive Session
+        </p>
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 flex flex-col items-center space-y-8 w-full max-w-md px-6">
+        <div className="w-full aspect-square max-h-[300px] flex flex-col items-center justify-center rounded-[3rem] bg-white/5 backdrop-blur-3xl border border-white/10 shadow-2xl relative overflow-hidden">
+          <div className="absolute top-6 text-4xl">{emoji}</div>
+          <AnimatePresence mode="wait">
+            <motion.h2
+              key={counter}
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -20, opacity: 0 }}
+              className="text-9xl font-black tracking-tighter"
+            >
+              {counter}
+            </motion.h2>
+          </AnimatePresence>
+        </div>
+
+        <div className="grid grid-cols-5 gap-2 w-full p-2 bg-white/5 rounded-2xl border border-white/5 backdrop-blur-md">
+          <button
+            onClick={() => setCounter((p) => p - 2)}
+            className="flex-1 py-3 text-slate-400 hover:text-white"
+          >
+            -2
+          </button>
+          <button
+            onClick={() => setCounter((p) => p - 1)}
+            className="flex-1 py-3 text-slate-400 hover:text-white"
+          >
+            -1
+          </button>
+          <button
+            onClick={() => setCounter(0)}
+            className="px-4 py-3 rounded-xl bg-white/10 text-xs font-bold uppercase"
+          >
+            Reset
+          </button>
+          <button
+            onClick={() => setCounter((p) => p + 1)}
+            className="flex-1 py-3 text-slate-400 hover:text-white"
+          >
+            +1
+          </button>
+          <button
+            onClick={() => setCounter((p) => p + 2)}
+            className="flex-1 py-3 text-slate-400 hover:text-white"
+          >
+            +2
+          </button>
+        </div>
+
+        <input
+          type="text"
+          onChange={(e) => setMessage(e.target.value)}
+          placeholder="Identity label..."
+          className="w-full px-6 py-4 rounded-2xl bg-slate-900/50 border border-white/10 focus:border-cyan-500/50 outline-none transition-all"
+        />
+      </div>
+    </motion.div>
+  );
+}
