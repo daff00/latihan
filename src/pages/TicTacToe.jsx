@@ -35,7 +35,7 @@ export default function TicTacToe() {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
       transition={{ duration: 0.3 }}
-      className="min-h-screen flex flex-col items-center pt-32 px-4 relative overflow-visible"
+      className="min-h-screen flex flex-col items-center pt-12 pb-32 sm:pt-32 sm:pb-12 px-4 relative overflow-visible"
     >
       <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-cyan-500/20 dark:bg-cyan-500/10 blur-[120px] rounded-full pointer-events-none transition-colors duration-500" />
 

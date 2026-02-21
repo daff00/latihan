@@ -32,7 +32,7 @@ export default function CounterPage() {
       exit={{ opacity: 0, y: -10 }}
       transition={{ duration: 0.3 }}
       // Standardized Layout for Header Consistency
-      className="min-h-screen flex flex-col items-center pt-32 px-4 relative overflow-hidden"
+      className="min-h-screen flex flex-col items-center pt-12 pb-32 sm:pt-32 sm:pb-12 px-4 relative overflow-hidden"
     >
       {/* Background Glow */}
       <motion.div

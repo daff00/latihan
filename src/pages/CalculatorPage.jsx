@@ -40,7 +40,7 @@ export default function CalculatorPage() {
       exit={{ opacity: 0, y: -10 }}
       transition={{ duration: 0.3 }}
       // Standardized Layout for Header Consistency
-      className="min-h-screen flex flex-col items-center pt-32 px-4 relative overflow-hidden"
+      className="min-h-screen flex flex-col items-center pt-12 pb-32 sm:pt-32 sm:pb-12 px-4 relative overflow-hidden"
     >
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/20 dark:bg-purple-600/10 blur-[120px] rounded-full pointer-events-none transition-colors duration-500" />
 
