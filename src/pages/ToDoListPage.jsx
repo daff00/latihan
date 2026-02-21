@@ -38,7 +38,7 @@ export default function TodoListPage() {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
       transition={{ duration: 0.3 }}
-      className="min-h-screen flex flex-col items-center pt-32 px-4 relative overflow-hidden"
+      className="min-h-screen flex flex-col items-center pt-12 pb-32 sm:pt-32 sm:pb-12 px-4 relative overflow-hidden"
     >
       <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-emerald-500/20 dark:bg-emerald-500/10 blur-[120px] rounded-full pointer-events-none transition-colors duration-500" />
 

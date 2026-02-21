@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useTheme } from "./ThemeContext"; // Import custom hook
+import { useTheme } from "./ThemeContext";
 import { Sun, Moon } from "lucide-react";
 
 const links = [
@@ -12,17 +12,18 @@ const links = [
 ];
 
 export default function Navbar() {
-  const { isDarkMode, toggleTheme } = useTheme(); // Panggil state dan fungsi toggle
+  const { isDarkMode, toggleTheme } = useTheme();
 
   return (
-    <div className="fixed top-6 left-0 w-full flex justify-center z-50 px-4">
-      <nav className="flex items-center gap-1 p-2 bg-slate-100/80 dark:bg-slate-950/80 backdrop-blur-xl border border-black/5 dark:border-white/10 rounded-full shadow-2xl transition-colors duration-500">
+    // Berubah dari fixed top-6 menjadi responsif (bawah di HP, atas di PC)
+    <div className="fixed bottom-6 sm:bottom-auto sm:top-6 left-0 w-full flex justify-center z-50 px-2 sm:px-4">
+      <nav className="flex items-center gap-1 sm:gap-2 p-2 bg-slate-100/80 dark:bg-slate-950/80 backdrop-blur-xl border border-black/5 dark:border-white/10 rounded-full shadow-2xl transition-colors duration-500 overflow-x-auto no-scrollbar max-w-full">
         {links.map((link) => (
           <NavLink
             key={link.path}
             to={link.path}
             className={({ isActive }) =>
-              `relative px-6 py-2 text-sm font-medium transition-colors duration-300 rounded-full outline-none ${
+              `relative px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium transition-colors duration-300 rounded-full outline-none whitespace-nowrap shrink-0 ${
                 isActive 
                   ? "text-slate-900 dark:text-white" 
                   : "text-slate-500 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-slate-200"
@@ -45,13 +46,13 @@ export default function Navbar() {
         ))}
 
         {/* Separator */}
-        <div className="w-[1px] h-6 bg-slate-300 dark:bg-white/10 mx-2" />
+        <div className="w-[1px] h-6 bg-slate-300 dark:bg-white/10 mx-1 sm:mx-2 shrink-0" />
 
         {/* Theme Toggle Button */}
         <motion.button
           whileTap={{ scale: 0.9 }}
           onClick={toggleTheme}
-          className="p-2 rounded-full text-slate-500 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-white/10 transition-colors"
+          className="p-2 shrink-0 rounded-full text-slate-500 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-white/10 transition-colors"
         >
           {isDarkMode ? <Moon size={18} className="text-indigo-400" /> : <Sun size={18} className="text-yellow-500" />}
         </motion.button>
