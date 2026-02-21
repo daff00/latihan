@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useTheme } from "./ThemeContext";
+import { useTheme } from "./ThemeContext"; // Import custom hook
 import { Sun, Moon } from "lucide-react";
 
 const links = [
@@ -11,11 +11,11 @@ const links = [
 ];
 
 export default function Navbar() {
-  const { isDarkMode, toggleTheme } = useTheme();
+  const { isDarkMode, toggleTheme } = useTheme(); // Panggil state dan fungsi toggle
 
   return (
     <div className="fixed top-6 left-0 w-full flex justify-center z-50 px-4">
-      <nav className="flex items-center gap-1 p-2 bg-slate-900/40 dark:bg-slate-950/80 backdrop-blur-xl border border-black/5 dark:border-white/10 rounded-full shadow-2xl transition-colors duration-500">
+      <nav className="flex items-center gap-1 p-2 bg-slate-100/80 dark:bg-slate-950/80 backdrop-blur-xl border border-black/5 dark:border-white/10 rounded-full shadow-2xl transition-colors duration-500">
         {links.map((link) => (
           <NavLink
             key={link.path}
@@ -44,7 +44,7 @@ export default function Navbar() {
         ))}
 
         {/* Separator */}
-        <div className="w-[1px] h-6 bg-slate-200 dark:bg-white/10 mx-2" />
+        <div className="w-[1px] h-6 bg-slate-300 dark:bg-white/10 mx-2" />
 
         {/* Theme Toggle Button */}
         <motion.button
