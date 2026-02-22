@@ -48,7 +48,7 @@ export default function GithubExplorer() {
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            placeholder="Ketik username GitHub..."
+            placeholder="Input GitHub username..."
             className="flex-1 px-6 py-4 rounded-2xl bg-slate-100/60 dark:bg-white/5 border border-slate-300 dark:border-white/10 focus:border-blue-500/50 outline-none transition-all text-slate-900 dark:text-white placeholder-slate-500 dark:placeholder-slate-400 backdrop-blur-md shadow-lg"
           />
           {status === "succeeded" || error ? (
