@@ -26,15 +26,12 @@ export default function CounterPage() {
 
   return (
     <motion.div
-      // Standard Page Transition
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
       transition={{ duration: 0.3 }}
-      // Standardized Layout for Header Consistency
       className="min-h-screen flex flex-col items-center pt-12 pb-32 sm:pt-32 sm:pb-12 px-4 relative overflow-hidden"
     >
-      {/* Background Glow */}
       <motion.div
         animate={{
           backgroundColor:
@@ -43,7 +40,6 @@ export default function CounterPage() {
         className="absolute w-[600px] h-[600px] rounded-full blur-[140px] -top-40 -right-40 opacity-20 dark:opacity-10 transition-colors duration-700 pointer-events-none"
       />
 
-      {/* Header - Locked Position */}
       <div className="text-center space-y-2 mb-12 z-10">
         <h1 className="text-5xl font-bold tracking-tighter bg-gradient-to-r from-purple-600 to-cyan-600 dark:from-purple-400 dark:to-cyan-400 bg-clip-text text-transparent">
           Precision Counter
@@ -53,8 +49,7 @@ export default function CounterPage() {
         </p>
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 flex flex-col items-center space-y-8 w-full max-w-md px-6">
+      <div className="relative z-10 flex flex-col items-center space-y-6 w-full max-w-md px-6">
         <div className="w-full aspect-square max-h-[300px] flex flex-col items-center justify-center rounded-[3rem] bg-slate-200/50 dark:bg-white/5 backdrop-blur-3xl border border-slate-300 dark:border-white/10 shadow-2xl relative overflow-hidden transition-colors duration-500">
           <div className="absolute top-6 text-4xl">{emoji}</div>
           <AnimatePresence mode="wait">
@@ -103,12 +98,28 @@ export default function CounterPage() {
           </button>
         </div>
 
-        <input
-          type="text"
-          onChange={(e) => setMessage(e.target.value)}
-          placeholder="Identity label..."
-          className="w-full px-6 py-4 rounded-2xl bg-slate-200/50 dark:bg-slate-900/50 border border-slate-300 dark:border-white/10 focus:border-cyan-500/50 outline-none transition-all text-slate-800 dark:text-white placeholder-slate-500 dark:placeholder-slate-400"
-        />
+        <div className="w-full space-y-4">
+          <input
+            type="text"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            placeholder="Identity label..."
+            className="w-full px-6 py-4 rounded-2xl bg-slate-200/50 dark:bg-slate-900/50 border border-slate-300 dark:border-white/10 focus:border-cyan-500/50 outline-none transition-all text-slate-800 dark:text-white placeholder-slate-500 dark:placeholder-slate-400"
+          />
+
+          <AnimatePresence>
+            {message && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                className="w-full px-6 py-4 text-center rounded-2xl bg-slate-200/50 dark:bg-white/5 border border-slate-300 dark:border-white/10 shadow-md backdrop-blur-md transition-colors duration-500 font-bold uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-600 dark:from-purple-400 dark:to-cyan-400"
+              >
+                {message}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
     </motion.div>
   );
