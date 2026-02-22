@@ -21,6 +21,20 @@ export default function CalculatorPage() {
     setIsFinished(false);
   };
 
+  const handleSpecial = (btn) => {
+    if (btn === "AC") {
+      setDisplay("0");
+      setEquation("");
+      setIsFinished(false);
+    } else if (btn === "+/-") {
+      setDisplay((prev) => (Number(prev) * -1).toString());
+    } else if (btn === "%") {
+      setDisplay((prev) => (Number(prev) / 100).toString());
+    } else if (btn === "÷") {
+      handleOperator("/");
+    }
+  };
+
   const calculate = () => {
     try {
       const result = new Function(`return ${equation + display}`)();
@@ -34,17 +48,14 @@ export default function CalculatorPage() {
 
   return (
     <motion.div
-      // Standard Page Transition
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
       transition={{ duration: 0.3 }}
-      // Standardized Layout for Header Consistency
       className="min-h-screen flex flex-col items-center pt-12 pb-32 sm:pt-32 sm:pb-12 px-4 relative overflow-hidden"
     >
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/20 dark:bg-purple-600/10 blur-[120px] rounded-full pointer-events-none transition-colors duration-500" />
 
-      {/* Header - Locked Position */}
       <div className="text-center space-y-2 mb-12 z-10">
         <h1 className="text-5xl font-bold tracking-tighter bg-gradient-to-r from-purple-600 to-cyan-600 dark:from-purple-400 dark:to-cyan-400 bg-clip-text text-transparent">
           Precision Compute
@@ -54,7 +65,6 @@ export default function CalculatorPage() {
         </p>
       </div>
 
-      {/* Content */}
       <motion.div className="relative z-10 w-full max-w-sm bg-slate-100/60 dark:bg-white/5 backdrop-blur-3xl border border-slate-300 dark:border-white/10 p-8 rounded-[3rem] shadow-2xl transition-colors duration-500">
         <div className="flex flex-col items-end justify-end h-24 mb-6 px-4 overflow-hidden">
           <p className="text-slate-500 dark:text-slate-400 text-sm truncate w-full text-right transition-colors">
@@ -76,14 +86,7 @@ export default function CalculatorPage() {
           {["AC", "+/-", "%", "÷"].map((btn) => (
             <button
               key={btn}
-              onClick={
-                btn === "AC"
-                  ? () => {
-                      setDisplay("0");
-                      setEquation("");
-                    }
-                  : undefined
-              }
+              onClick={() => handleSpecial(btn)}
               className="h-14 rounded-xl bg-slate-300/70 dark:bg-slate-800/40 text-slate-800 dark:text-slate-300 hover:bg-slate-400/70 dark:hover:bg-slate-700/50 transition-colors"
             >
               {btn}
