@@ -48,6 +48,12 @@ A task management interface.
 * Completed tasks transition to a muted, strike-through styling.
 * Task lists are preserved across sessions via `localStorage`.
 
+### 5. Precision Hub (GitHub Explorer)
+A developer profile explorer integrating with the public GitHub API.
+* Uses Redux Thunk to handle asynchronous data fetching for user profiles and recent repositories.
+* Global state management caches the fetched data, preventing redundant API calls when navigating between suite applications.
+* Handles loading states, error boundaries, and success data mapping gracefully.
+
 ## Getting Started
 
 To run this project locally, ensure you have Node.js installed, then execute the following commands in your terminal:
